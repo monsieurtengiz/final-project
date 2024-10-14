@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="column" *ngFor="let item of posts">
+    <div class="div-image">
+      <img [src]="item.images[0]" class="column-image" />
+    </div>
+    <div class="text-div">
+      <p class="data-id">{{ item.title }}</p>
+      <p class="data-price">{{ item.price }}$</p>
+    </div>
+    <button (click)="addToCart(item)">Purchase</button>
+  </div>
+</div>
+
+<div *ngIf="showMessage" class="message-banner">
+  {{ message }}
+</div>

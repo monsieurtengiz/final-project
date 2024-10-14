@@ -1,0 +1,62 @@
+@import "./global.scss";
+
+header {
+  position: sticky;
+  top: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: $primary-color;
+  padding: 18px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+li {
+  list-style-type: none;
+  margin: 0 30px;
+  font-size: $big-fontsize;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  a {
+    color: #ffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+.cart-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-count {
+  position: absolute;
+  top: -12px;
+  right: -20px;
+  background-color: goldenrod;
+  color: white;
+  border-radius: 50%;
+  padding: 0px 5px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 480px) {
+  li {
+    font-size: $default-fontsize;
+  }
+
+}

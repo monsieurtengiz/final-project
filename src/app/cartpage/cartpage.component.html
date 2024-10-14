@@ -1,0 +1,25 @@
+<div class="cart-wrapper" *ngFor="let item of cartItems">
+  <div class="cart-image">
+    <img [src]="item.images[0]" alt="image" class="cart-image" />
+  </div>
+  <p class="cart-title">{{ item.title }}</p>
+  <div class="cart-quantity">
+    <button class="decrease" (click)="dicrease(item)">-</button>
+    {{ item.quantity || 1 }}
+    <button class="increase" (click)="increase(item)">+</button>
+  </div>
+  <p class="cart-price">{{ item.price * item.quantity || item.price }}$</p>
+  <button class="delete" (click)="removeFromCart(item)">X</button>
+</div>
+
+<div class="checkoutTotalPrice">
+  <div class="totalPrice">Total: {{ totalPrice }} $</div>
+  <button class="checkoutButton" (click)="checkoutButton()">Checkout</button>
+</div>
+
+<div *ngIf="isCheckoutPopupVisible" class="checkoutPopup">
+  <div class="popupContent">
+    <h2>{{ checkoutMessage }}</h2>
+    <button class="homeButton" (click)="returnToHome()">Return to Home</button>
+  </div>
+</div>

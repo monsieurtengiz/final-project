@@ -1,0 +1,11 @@
+<header>
+  <nav>
+    <li><a routerLink="app-homepage">Home</a></li>
+    <li class="cart-container">
+      <a routerLink="app-cartpage">Cart</a>
+      <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+    </li>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>
