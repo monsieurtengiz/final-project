@@ -1,23 +1,22 @@
 @import "../global.scss";
 
 .container {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-evenly;
-  margin-top: 30px;
+  // გამოყენებული გაქვს არასწორი layout ელემენტების პოზიციონირებისთვის, flex გამოსადეგია უმეტეს შემთხვევაში, მაგრამ დიდი რაოდენობის ელემენტების სამართავად, განსაკუთრებით ავტომატური რესპონსივისთვის Grid-თან ახლოსაც ვერ მივა!
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 30px;
+  // დაშორება ელემენტებს ან კომპონენტებს შორის უნდა იყოს გაწერილი global.scss-ში
+  margin: $margin-between-components 0 0 $margin-between-components;
 }
 
 .column {
-  width: 170px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  margin: 30px;
 }
 
 .div-image {
-  width: 170px;
   height: 160px;
-  min-height: 160px;
+  // მოერიდე min-height-ის გამოყენებას
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +32,7 @@
 
 .text-div {
   height: 100px;
-  width: 170px;
+  width: 100%;
   justify-content: center;
   display: flex;
   flex-flow: column;
@@ -42,11 +41,17 @@
 
 .data-id {
   height: 40px;
+  text-align: center;
+  // გრძელი ტექსტის შემთხვევაში, დახატე შენთვის სასურველი რაოდენობის სიტყვა, დანარჩენი მოაჭერი და მის მაგივრად დახატე 3 წერტილი (...) უკეთესი ვიზუალისთვის
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
 button {
   background-color: $primary-color;
-  width: 170px;
+  width: 100%;
   border: none;
   height: 30px;
   color: #ffff;
@@ -58,11 +63,13 @@ button {
   }
 }
 
-.message-banner {
+.message-banner-closed {
+  width: 300px;
+  height: 40px;
   position: fixed;
   bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scaleX(0);
   background-color: $primary-color;
   color: #ffff;
   padding: 10px 20px;
@@ -71,6 +78,9 @@ button {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   text-align: center;
-  width: 300px;
-  height: 20px;
+  transition: all 0.3s ease; // ანიმაციისთვის
+}
+
+.message-banner-opened {
+  transform: translateX(-50%) scaleX(1); // ანიმაციისთვის
 }

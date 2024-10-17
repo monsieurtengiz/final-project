@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from './cart-service.service';
+import { map, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,12 @@ import { CartService } from './cart-service.service';
 })
 export class AppComponent implements OnInit {
   title = 'final-project';
-  cartItemCount: number = 0;
+  cartItemCount$!: Observable<number>;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-
-    this.cartService.currentCart.subscribe(items => {
-      this.cartItemCount = items.length; 
-    });
+    // ბევრად უკეთესია ასეთ დროს async pipe-ის გამოყენება
+    this.cartItemCount$ = this.cartService.currentCart.pipe(map((cartArray) => cartArray.length));
   }
 }

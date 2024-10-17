@@ -1,10 +1,17 @@
 <header>
   <nav>
-    <li><a routerLink="app-homepage">Home</a></li>
-    <li class="cart-container">
-      <a routerLink="app-cartpage">Cart</a>
-      <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
-    </li>
+    <!-- ul დაგავიწყდა? -->
+    <ul>
+      <li>
+        <a routerLink="app-homepage">Home</a>
+      </li>
+
+      <li class="cart-container">
+        <a routerLink="app-cartpage">Cart</a>
+        <!-- ყოველთვის ჯობია გამოიყენო async pipe როცა გჭირდება ერთი პატარა ცვლადის დახატვა -->
+        <span class="cart-count" *ngIf="cartItemCount$ | async as cartItemCount">{{ cartItemCount }}</span>
+      </li>
+    </ul>
   </nav>
 </header>
 
