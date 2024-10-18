@@ -1,25 +1,29 @@
+<!-- კლასების სახელებად ნუ იყენებ camelCase-ს, ქემელქეისით სახელების დარქმევა ხდება პროგრამულ ენებში მაგალითად ჯავასკრიპტში, ტაიპსკრტიპტში ა.შ, HTML-ში, ისევე როგორც Css-ში სახელებს არქმევ ტირეთი: cart-button და არა cartButton -->
 <div class="cart-wrapper" *ngFor="let item of cartItems">
   <div class="cart-image">
     <img [src]="item.images[0]" alt="image" class="cart-image" />
   </div>
   <p class="cart-title">{{ item.title }}</p>
   <div class="cart-quantity">
-    <button class="decrease" (click)="dicrease(item)">-</button>
+    <button class="decrease" (click)="decreaseProductQuantity(item)">-</button>
     {{ item.quantity || 1 }}
-    <button class="increase" (click)="increase(item)">+</button>
+    <button class="increase" (click)="increaseProductQuantity(item)">+</button>
   </div>
   <p class="cart-price">{{ item.price * item.quantity || item.price }}$</p>
-  <button class="delete" (click)="removeFromCart(item)">X</button>
+  <button class="delete" (click)="removeItemFromCart(item)">X</button>
 </div>
 
-<div class="checkoutTotalPrice">
-  <div class="totalPrice">Total: {{ totalPrice }} $</div>
-  <button class="checkoutButton" (click)="checkoutButton()">Checkout</button>
+
+<div class="checkout-total-price" *ngIf="cartItems.length > 0"> <!-- total და checkout არ უნდა იყოს დახატული იმ შემთხვევაში, თუ კალათა ცარიელია -->
+  <div class="total-price">Total: {{ totalPrice }} $</div>
+  <button class="checkout-button" (click)="handleCheckout()">Checkout</button>
 </div>
 
-<div *ngIf="isCheckoutPopupVisible" class="checkoutPopup">
-  <div class="popupContent">
-    <h2>{{ checkoutMessage }}</h2>
-    <button class="homeButton" (click)="returnToHome()">Return to Home</button>
+<!-- მოდალი კარგია -->
+<div class="checkout-popup" *ngIf="isCheckoutPopupVisible">
+  <div class="popup-content">
+    <!-- არ იყო საჭირო ცვლადის შექმნა და ჩასმა ტექსტისთვის -->
+    <h2>Congratulations on your purchase!</h2>
+    <button class="home-button" routerLink="/app-homepage">Return to Home</button>
   </div>
 </div>

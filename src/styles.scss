@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+// ეს ფაილი შეგიძლია გამოიყენო როგორც reset.css ან დააიმპორტო სხვა scss ფაილები, ამ ფაილიდან წვდომა გაქვს ნებისმიერი კომპონენტის scss ფაილზე
+
+html, body {
+    height: 100%;
+}
+
+* {
+    // header-ზე ზევიდან მახინჯი დაშორების მოსაშორებლად
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

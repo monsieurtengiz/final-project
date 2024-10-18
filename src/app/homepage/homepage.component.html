@@ -7,10 +7,8 @@
       <p class="data-id">{{ item.title }}</p>
       <p class="data-price">{{ item.price }}$</p>
     </div>
-    <button (click)="addToCart(item)">Purchase</button>
+    <button (click)="addProductToCart(item)">Purchase</button>
   </div>
 </div>
 
-<div *ngIf="showMessage" class="message-banner">
-  {{ message }}
-</div>
+<div class="message-banner-closed" [ngClass]="{'message-banner-opened': isBannerActive}">Item added to cart</div>

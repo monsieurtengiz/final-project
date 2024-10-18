@@ -5,12 +5,12 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  private cart = new BehaviorSubject<any[]>([]);
+  private cart = new BehaviorSubject<any[]>([]); // any ტიპი
   currentCart = this.cart.asObservable();
 
   constructor() {}
 
-  addToCart(product: any) {
+  addProductToCart(product: any) { // any ტიპი
     const currentCartItems = this.cart.getValue();
     const existingItem = currentCartItems.find(
       (item) => item.id === product.id
@@ -25,13 +25,11 @@ export class CartService {
     this.cart.next(currentCartItems);
   }
 
-  updateCart(updatedCartItems: any[]) {
+  updateCart(updatedCartItems: any[]) { // any ტიპი
     this.cart.next(updatedCartItems);
   }
 
-  getCartItems() {
-    return this.currentCart;
-  }
+  // ირელევანტური ფუნქცია, არაა არსად გამოყენებული getCartItems()
 
   clearCart() {
     this.cart.next([]);
